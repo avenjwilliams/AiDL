@@ -85,10 +85,10 @@ class Linear4Bit(torch.nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         with torch.no_grad():
-            weight_1d = block_dequantize_4bit(self.weight_q4, self.weight_norm)  # shape [out*in]
-            weight = weight_1d.view(self._shape)  # shape [out_features, in_features]
+            weight_1d = block_dequantize_4bit(self.weight_q4, self.weight_norm)
+            weight = weight_1d.view(self._shape)
 
-            return torch.nn.functional.linear(x.to(torch.float32), weight, self.bias)
+        return torch.nn.functional.linear(x.to(torch.float32), weight, self.bias)
 
 
 class BigNet4Bit(torch.nn.Module):
