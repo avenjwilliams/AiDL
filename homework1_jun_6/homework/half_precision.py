@@ -26,7 +26,7 @@ class HalfLinear(torch.nn.Linear):
         with torch.no_grad():
             x16 = x.to(torch.float16)
             y16 = torch.nn.functional.linear(x16, self.weight, self.bias)
-            return y16.to(x.dtype)
+        return y16.to(x.dtype)
 
 
 class HalfBigNet(torch.nn.Module):
