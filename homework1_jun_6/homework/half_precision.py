@@ -23,9 +23,8 @@ class HalfLinear(torch.nn.Linear):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # Hint: Use the .to method to cast a tensor to a different dtype (i.e. torch.float16 or x.dtype)
         # The input and output should be of x.dtype = torch.float32
-        with torch.no_grad():
-            x16 = x.to(torch.float16)
-            y16 = torch.nn.functional.linear(x16, self.weight, self.bias)
+        x16 = x.to(torch.float16)
+        y16 = torch.nn.functional.linear(x16, self.weight, self.bias)
         return y16.to(x.dtype)
 
 
